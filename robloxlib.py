@@ -21,3 +21,15 @@ def userInGroup(mode, userid, groupid):
             return False
     if mode == "GetGroupRole":
         return r.text
+def userOwnsAsset(userid, assetid):
+    r = requests.get("https://api.roblox.com/Ownership/HasAsset?userId="+str(userid)+"&assetId="+str(assetid))
+    if "false" in r.text:
+        return False
+    else:
+        return True
+def usernameTaken(username):
+    r = requests.get("https://www.roblox.com/UserCheck/DoesUsernameExist?username="+str(username))
+    if "true" in r.text:
+        return True
+    else:
+        return False
